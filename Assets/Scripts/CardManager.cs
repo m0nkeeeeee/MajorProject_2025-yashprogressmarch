@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public int pairAmount = 10; // 10 pairs (tileimage_1 to tileset2_10)
+    [HideInInspector] public int pairAmount = 10; // 10 pairs (tileimage_1 to tileset2_10)
     public GameObject cardPrefab;
 
     public List<Sprite> tileImages = new List<Sprite>(); // tileimage_1 to 10
     public List<Sprite> tileSet2Images = new List<Sprite>(); // tileset2_1 to 10
 
     private List<GameObject> cardDeck = new List<GameObject>();
-    public int width;
-    public int height;
+    [HideInInspector]public int width;
+    [HideInInspector]public int height;
     float offSet = 1.2f;
 
     void Start()
     {
+        GameManager.instance.SetPairs(pairAmount);
         CreatePlayField();
     }
 
@@ -57,14 +58,14 @@ public class CardManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (pairAmount * 2 > width * height)
+        for (int x = 0; x < width; x++)
         {
-            Debug.LogError("Grid is too small for all pairs.");
+            for (int z = 0; z < height; z++)
+            {
+                Vector3 pos = new Vector3(x * offSet, 0, z * offSet);
+                Gizmos.DrawWireCube(pos, new Vector3(1,0.1f,1));
+            }
         }
 
-        if (pairAmount > tileImages.Count || pairAmount > tileSet2Images.Count)
-        {
-            Debug.Log("Too many pairs for available sprites.");
-        }
     }
 }

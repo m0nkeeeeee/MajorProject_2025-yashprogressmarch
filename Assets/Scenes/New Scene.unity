@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 689200552}
   - component: {fileID: 689200554}
   - component: {fileID: 689200555}
+  - component: {fileID: 689200556}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3ac00bdef4f5043a34ddce81b0cd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pairAmount: 8
+  pairAmount: 2
   cardPrefab: {fileID: 1308164127832992469, guid: 368ac3c1e4ae6c84aa50c10411d3c6d9, type: 3}
   tileImages:
   - {fileID: -2133749569, guid: 2e6aa7f1a0af2ab419be3ecb47176b4a, type: 3}
@@ -338,8 +339,8 @@ MonoBehaviour:
   - {fileID: -381328553, guid: 9bde2d5d0f2c5e24188322008ffd406b, type: 3}
   - {fileID: -295859840, guid: 9bde2d5d0f2c5e24188322008ffd406b, type: 3}
   - {fileID: 926614535, guid: 9bde2d5d0f2c5e24188322008ffd406b, type: 3}
-  width: 4
-  height: 4
+  width: 2
+  height: 2
 --- !u!114 &689200555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +353,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad64c4d182f26a49ac68f36d348709e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideMatches: 0
+--- !u!114 &689200556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689200551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe93693a8c908743be82fc8ec9387e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeForLevelToComplete: 120
 --- !u!1 &2090410606
 GameObject:
   m_ObjectHideFlags: 0

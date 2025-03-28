@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     bool picked;
+    int pairs;
+    int pairCounter;
+    public bool hideMatches;
 
     List<Card> pickedCards = new List<Card>();
     private void Awake()
@@ -33,14 +36,32 @@ public class GameManager : MonoBehaviour
         if (pickedCards[0].GetCardId() == pickedCards[1].GetCardId())
         {
             //we have a match
-            pickedCards[0].gameObject.SetActive(false);
-            pickedCards[1].gameObject.SetActive(false);
+            if (hideMatches)
+            {
+                pickedCards[0].gameObject.SetActive(false);
+                pickedCards[1].gameObject.SetActive(false);
+            }
+            else
+            {
+                pickedCards[0].GetComponent<BoxCollider>().enabled = false;
+                pickedCards[1].GetComponent<BoxCollider>().enabled = false;
+            }
+            // pickedCards[0].gameObject.SetActive(false);
+            //pickedCards[1].gameObject.SetActive(false);
+
+            
+
+
+
+            pairCounter++;
+            CheckForWin();
 
         }
         else
         {
             pickedCards[0].FlipOpen(false);
             pickedCards[1].FlipOpen(false);
+
 
         }
 
@@ -50,8 +71,27 @@ public class GameManager : MonoBehaviour
         pickedCards.Clear();
     }
 
+
+    void CheckForWin()
+    {
+        if(pairs == pairCounter)
+        {
+            Debug.Log("You win!");
+        }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
+
     public bool HasPicked()
     {
         return picked;
+    }
+
+    public void SetPairs(int pairAmount)
+    {
+        pairs = pairAmount;
     }
 }
