@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardFront: {fileID: 7922964795827424398}
   anim: {fileID: 2108581455070082835}
+  fxConfetti: {fileID: 0}
 --- !u!65 &1464591447813670397
 BoxCollider:
   m_ObjectHideFlags: 0

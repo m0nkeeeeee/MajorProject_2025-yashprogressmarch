@@ -6,7 +6,7 @@ public class Card : MonoBehaviour
     int cardId;
     public SpriteRenderer cardFront;
     public Animator anim;
-        
+
     public void SetCard(int _id, Sprite _sprite)
     {
         cardId = _id;
@@ -22,4 +22,6 @@ public class Card : MonoBehaviour
     {
         return cardId;
     }
+
+
 }
