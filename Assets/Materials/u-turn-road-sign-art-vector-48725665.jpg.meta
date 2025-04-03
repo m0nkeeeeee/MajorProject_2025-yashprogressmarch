@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4de8696d9a838842bf189b60f38c283
+guid: 91210a2ec72efd9408c142312e2d598b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,12 +95,34 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: u-turn-road-sign-art-vector-48725665_0
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 43
+        width: 480
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879dac194ae3b6f4c81e8a22634736b6
+      internalID: 191162678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f6361b6bc66c3724cb7cc45dab9ebf5f
     internalID: 0
     vertices: []
     indices: 
@@ -109,7 +131,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      u-turn-road-sign-art-vector-48725665_0: 191162678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
