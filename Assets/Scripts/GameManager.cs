@@ -1,9 +1,8 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.UI; // Import UI namespace
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,15 +13,22 @@ public class GameManager : MonoBehaviour
     int pairCounter;
     public bool hideMatches;
     public int scorePerMatch = 100;
+    public CardManager cardManager; // Drag your CardManager here in the Inspector
+    public float revealDuration = 4f; // Duration for the cards to stay flipped initially
 
     List<Card> pickedCards = new List<Card>();
 
     [Header("Hint System")] // Group hint-related properties in the Inspector
     public GameObject hintImage; // Assign UI Image in Inspector
 
+    public Button flipAllButton;  // Reference to your "Flip All" button
+    public float flipDuration = 2f; // Duration for cards to stay flipped when using "Flip All" button
+
     private void Awake()
     {
         instance = this;
+        if (cardManager == null)
+            cardManager = FindAnyObjectByType<CardManager>();
     }
 
     private void Start()
@@ -30,6 +36,13 @@ public class GameManager : MonoBehaviour
         if (hintImage != null)
         {
             hintImage.SetActive(false); // Ensure the hint is hidden at start
+        }
+        StartCoroutine(RevealAllCardsAtStart());
+
+        // Make sure the button is linked and adds the method
+        if (flipAllButton != null)
+        {
+            flipAllButton.onClick.AddListener(FlipAllCards);
         }
     }
 
@@ -55,6 +68,54 @@ public class GameManager : MonoBehaviour
         {
             picked = true;
             StartCoroutine(CheckMatch());
+        }
+    }
+
+    IEnumerator RevealAllCardsAtStart()
+    {
+        var deck = cardManager.GetCardDeck(); // Assuming you added a public method to get the card deck
+
+        foreach (var cardObj in deck)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            card.FlipOpen(true);  // Flip all cards open initially
+        }
+
+        yield return new WaitForSeconds(revealDuration);
+
+        foreach (var cardObj in deck)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            card.FlipOpen(false);  // Flip all cards back after the reveal duration
+        }
+    }
+
+    // New method for flipping all cards for a limited time
+    public void FlipAllCards()
+    {
+        var deck = cardManager.GetCardDeck(); // Get the card deck
+
+        // Flip all cards open
+        foreach (var cardObj in deck)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            card.FlipOpen(true);  // Flip all cards open
+        }
+
+        // Wait for the specified duration (flipDuration)
+        StartCoroutine(FlipCardsBackAfterDelay(deck, flipDuration));
+    }
+
+    // Coroutine to flip cards back after the delay
+    private IEnumerator FlipCardsBackAfterDelay(List<GameObject> deck, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Flip all cards back after the specified duration
+        foreach (var cardObj in deck)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            card.FlipOpen(false);  // Flip the cards back
         }
     }
 
@@ -108,6 +169,7 @@ public class GameManager : MonoBehaviour
     {
         return picked;
     }
+
     public bool IsGameOver()
     {
         return gameOver;

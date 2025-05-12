@@ -20,6 +20,12 @@ public class CardManager : MonoBehaviour
         CreatePlayField();
     }
 
+    public List<GameObject> GetCardDeck()
+    {
+        return cardDeck;
+    }
+
+
     void CreatePlayField()
     {
         // Pair tileimage_X with tileset2_X
